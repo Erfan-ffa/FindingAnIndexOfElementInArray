@@ -1,25 +1,36 @@
-﻿namespace FindingTheIndexOfElementInArrayWithBinarySearch
+namespace FindingTheIndexOfElementInArrayWithBinarySearch
 {
     public class RecursiveFinder
     {
-        public void RecursiveFinde(int[] array, int first, int last, int key)
+        public int RecursiveFind(int[] array, int first, int last, int key)
         {
             int middle = (first + last) / 2;
-            if (first == last)
+            if (first > last)
             {
-                Console.WriteLine(last);
+                return first;
+            }
+            else if (first == last)
+            {
+                if (key < array[first])
+                {
+                    return last;
+                }
+                else
+                {
+                    return last + 1;
+                }
             }
             else if (key == array[middle])
             {
-                Console.WriteLine(middle + 1);
+                return middle + 1;
             }
             else if (key > array[middle])
             {
-                RecursiveFinde(array, middle + 1, last, key);
+                return RecursiveFind(array, middle + 1, last, key);
             }
             else
             {
-                RecursiveFinde(array, first, last - 1, key);
+                return RecursiveFind(array, first, middle - 1, key);
             }
         }
     }
